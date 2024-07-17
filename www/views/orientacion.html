@@ -1,0 +1,54 @@
+<header class="flex justify-between h-20 w-full bg-slate-500 items-center px-4">
+    <h1 class="text-sm ">Orientacion del braille</h1>
+    <button class="cursor-pointer">
+        <img src="/braille-learning/www/Public/img/icon-menu.png" alt="" srcset="">
+    </button>
+</header>
+<main class="p-4">
+    <div class="mt-4">
+        <div class="bg-white shadow-md rounded-lg p-4">
+            <p class="text-base text-gray-800 leading-relaxed">
+                La regleta es una herramienta rectangular con filas de celdas en las que se forman los caracteres Braille.
+            <p class="text-base text-gray-800 leading-relaxed mt-2">
+                El punzón es una pequeña herramienta con una punta redondeada que se utiliza para marcar puntos en el papel a través de las celdas de la regleta.            </p>
+
+            </p>
+        </div>
+    </div>
+</main>
+<main class="p-4">
+    <div class="mt-4">
+        <div class="bg-white shadow-md rounded-lg p-4">
+            <p class="text-base text-gray-800 leading-relaxed">
+                Cada celda en la regleta tiene seis posiciones para puntos, organizadas en dos columnas de tres filas.
+                Las posiciones están numeradas del 1 al 6, de arriba a abajo y de izquierda a derecha.            
+                <p class="text-base text-gray-800 leading-relaxed mt-2">
+            </p>
+        </div>
+    </div>
+
+    <div class="items-center flex justify-center align-center h-100 mt-6">
+        <img src="Public/img/casillabraille.png">
+    </div>
+</main>
+<div class="mt-4">
+    <div class="bg-white shadow-md rounded-lg p-4">
+        <p class="text-base text-gray-800 leading-relaxed">
+                       Los seis puntos ofrecen matematicamente la posibilidad de 64 diferentes agrupamientos, con los que se puede lograr una signografia completa y suficiente para toda la representacion grafica de contenidos diversos
+            <p class="text-base text-gray-800 leading-relaxed mt-2">
+        </p>
+    </div>
+
+    <div class="items-center flex justify-center align-center h-100 mt-6">
+        <img class="w-56 h-44" src="Public/img/adecedariobraille.jpg">
+    </div>
+</div>
+<div class="relative h-72">
+    <button class="back-button absolute bottom-4 left-4 bg-slate-100 text-cyan-800 rounded-xl px-4 py-2">Regresar</button>
+</div>
+
+<script>
+    document.querySelector(".back-button").addEventListener('click', function(){
+        loadPartialView('regleta-view',document.querySelector('.init'), false);
+    })
+</script>

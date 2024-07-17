@@ -1,0 +1,109 @@
+<style>
+    .key-active {
+        background-color: #000;
+        color: #fff;
+    }
+</style>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="text-center">
+        <h1 class="text-2xl font-bold mb-4">Simulador de Máquina Perkins</h1>
+        <div class="flex justify-center mb-4">
+            <div id="perkins-machine" class="grid grid-cols-3 gap-4">
+                <div class="key w-16 h-16 bg-gray-300 rounded cursor-pointer flex items-center justify-center" data-index="1">1</div>
+                <div class="key w-16 h-16 bg-gray-300 rounded cursor-pointer flex items-center justify-center" data-index="2">2</div>
+                <div class="key w-16 h-16 bg-gray-300 rounded cursor-pointer flex items-center justify-center" data-index="3">3</div>
+                <div class="key w-16 h-16 bg-gray-300 rounded cursor-pointer flex items-center justify-center" data-index="4">4</div>
+                <div class="key w-16 h-16 bg-gray-300 rounded cursor-pointer flex items-center justify-center" data-index="5">5</div>
+                <div class="key w-16 h-16 bg-gray-300 rounded cursor-pointer flex items-center justify-center" data-index="6">6</div>
+            </div>
+        </div>
+        <div class="flex justify-center space-x-4">
+            <button id="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Enviar</button>
+            <button id="delete" class="bg-red-500 text-white py-2 px-4 rounded">Borrar</button>
+        </div>
+        <div id="braille-output" class="mt-4"></div>
+        <div id="word-output" class="mt-4 text-lg font-bold"></div>
+    </div>
+
+    <div class="relative h-72">
+        <button class="back-button absolute bottom-4 left-4 bg-slate-100 text-cyan-800 rounded-xl px-4 py-2">Regresar</button>
+    </div>
+
+    <script>
+        const brailleAlphabet = {
+            '100000': 'A',
+            '101000': 'B',
+            '110000': 'C',
+            '110100': 'D',
+            '100100': 'E',
+            '111000': 'F',
+            '111100': 'G',
+            '101100': 'H',
+            '011000': 'I',
+            '011100': 'J',
+            '100010': 'K',
+            '101010': 'L',
+            '110010': 'M',
+            '110110': 'N',
+            '100110': 'O',
+            '111010': 'P',
+            '111110': 'Q',
+            '101110': 'R',
+            '011010': 'S',
+            '011110': 'T',
+            '100011': 'U',
+            '101011': 'V',
+            '011101': 'W',
+            '110011': 'X',
+            '110111': 'Y',
+            '100111': 'Z'
+        };
+
+        const keys = document.querySelectorAll('.key');
+        const brailleOutput = document.getElementById('braille-output');
+        const wordOutput = document.getElementById('word-output');
+        const submitButton = document.getElementById('submit');
+        const deleteButton = document.getElementById('delete');
+        let currentWord = '';
+
+        keys.forEach(key => {
+            key.addEventListener('click', () => {
+                key.classList.toggle('key-active');
+            });
+        });
+
+        submitButton.addEventListener('click', () => {
+            let brailleChar = '';
+            keys.forEach(key => {
+                if (key.classList.contains('key-active')) {
+                    brailleChar += '1';
+                } else {
+                    brailleChar += '0';
+                }
+            });
+
+            const letter = brailleAlphabet[brailleChar] || 'No corresponde a ninguna letra';
+            brailleOutput.textContent = `Puntos Braille: ${brailleChar} - Letra: ${letter}`;
+
+            if (letter !== 'No corresponde a ninguna letra') {
+                currentWord += letter;
+                wordOutput.textContent = `Palabra actual: ${currentWord}`;
+            }
+
+            // Reset keys for the next character
+            keys.forEach(key => key.classList.remove('key-active'));
+        });
+
+        deleteButton.addEventListener('click', () => {
+            if (currentWord.length > 0) {
+                currentWord = currentWord.slice(0, -1);
+                wordOutput.textContent = `Palabra actual: ${currentWord}`;
+            }
+        });
+
+        document.querySelector(".back-button").addEventListener('click', function(){
+        loadPartialView('topnav-bar',document.querySelector('.init'), false);
+    })
+    </script>
+    </script>

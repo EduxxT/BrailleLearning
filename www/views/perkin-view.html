@@ -21,6 +21,9 @@
 
 
 <script>
+    document.querySelector(".practica-view").addEventListener('click', function(){
+        loadPartialView('simulador-perkins',document.querySelector('.init'), false);
+    })
     document.querySelector(".back-button").addEventListener('click', function(){
         loadPartialView('topnav-bar',document.querySelector('.init'), false);
     })
